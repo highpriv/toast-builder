@@ -1,6 +1,6 @@
-@import "./variables";
-@import "./reset";
-@import "./animations";
+@use "./variables";
+@use "./reset";
+@use "./animations";
 
 #app {
   width: 100%;

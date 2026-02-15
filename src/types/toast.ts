@@ -41,6 +41,10 @@ export interface NotificationConfig {
   showIcon: boolean;
   showCloseButton: boolean;
   customIcon?: IconName;
+  customIconUrl?: string;
+  customIconBase64?: string;
+  customCloseButtonUrl?: string;
+  customCloseButtonBase64?: string;
   animation?: AnimationType;
   showProgress?: boolean;
 }

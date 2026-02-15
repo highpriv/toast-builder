@@ -6,7 +6,11 @@
   }">
     <div :class="$style.content">
       <div :class="$style.main">
-        <Icon v-if="toast.showIcon && iconName" :name="iconName" :class="$style.icon" size="24px" />
+        <img v-if="toast.showIcon && toast.customIconBase64" :src="toast.customIconBase64" :class="$style.customIcon"
+          alt="Custom icon" />
+        <img v-else-if="toast.showIcon && showCustomIconUrl" :src="toast.customIconUrl" :class="$style.customIcon"
+          alt="Custom icon" @error="handleIconLoadError" />
+        <Icon v-else-if="toast.showIcon && iconName" :name="iconName" :class="$style.icon" size="24px" />
 
         <div :class="$style.text">
           <div v-if="toast.title" :class="$style.title">{{ toast.title }}</div>
@@ -15,7 +19,11 @@
       </div>
 
       <button v-if="toast.showCloseButton" :class="$style.closeButton" @click="handleClose">
-        <Icon name="x-circle" size="20px" />
+        <img v-if="toast.customCloseButtonBase64" :src="toast.customCloseButtonBase64" :class="$style.closeButtonImage"
+          alt="Close" />
+        <img v-else-if="showCustomCloseButtonUrl" :src="toast.customCloseButtonUrl" :class="$style.closeButtonImage"
+          alt="Close" @error="handleCloseButtonLoadError" />
+        <Icon v-else name="x-circle" size="20px" />
       </button>
     </div>
 
@@ -25,11 +33,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import type { ActiveNotification } from '@/types';
 import { Icon } from '@/components/common';
 import { useAnimation } from '@/composables';
 import { DEFAULT_ICONS } from '@/constants';
+import { validateImageUrl } from '@/utils';
 
 const props = defineProps<{
   toast: ActiveNotification;
@@ -41,12 +50,35 @@ const emit = defineEmits<{
 
 const { getAnimationClasses, getAnimationDuration } = useAnimation();
 
+const iconLoadError = ref(false);
+const closeButtonLoadError = ref(false);
+
 const iconName = computed(() => {
   if (props.toast.customIcon) {
     return props.toast.customIcon;
   }
   return DEFAULT_ICONS[props.toast.type];
 });
+
+const showCustomIconUrl = computed(() => {
+  if (!props.toast.customIconUrl || iconLoadError.value) return false;
+  const error = validateImageUrl(props.toast.customIconUrl);
+  return !error; // Only show if URL is valid
+});
+
+const showCustomCloseButtonUrl = computed(() => {
+  if (!props.toast.customCloseButtonUrl || closeButtonLoadError.value) return false;
+  const error = validateImageUrl(props.toast.customCloseButtonUrl);
+  return !error; // Only show if URL is valid
+});
+
+const handleIconLoadError = () => {
+  iconLoadError.value = true;
+};
+
+const handleCloseButtonLoadError = () => {
+  closeButtonLoadError.value = true;
+};
 
 const animationStyle = computed(() => {
   const animation = props.toast.animation || 'fade';
@@ -98,6 +130,14 @@ const handleClose = () => {
   margin-top: 2px;
 }
 
+.customIcon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin-top: 2px;
+}
+
 .text {
   flex: 1;
   min-width: 0;
@@ -141,6 +181,12 @@ const handleClose = () => {
   &:active {
     transform: scale(0.95);
   }
+}
+
+.closeButtonImage {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
 }
 
 .progressBar {

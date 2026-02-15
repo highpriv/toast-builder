@@ -1,5 +1,5 @@
 <template>
-  <input :type="type" :value="modelValue" :placeholder="placeholder" :disabled="disabled"
+  <input :type="type" :value="modelValue" :placeholder="placeholder" :disabled="disabled" :maxlength="maxlength"
     :class="[$style.input, { [$style.error]: error }]" @input="handleInput" />
 </template>
 
@@ -11,6 +11,7 @@ withDefaults(
     placeholder?: string;
     disabled?: boolean;
     error?: string;
+    maxlength?: number;
   }>(),
   {
     type: 'text',

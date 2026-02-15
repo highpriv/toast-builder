@@ -18,3 +18,8 @@ export {
   getContrastRatio,
   meetsContrastRequirements,
 } from "./color-utils";
+export {
+  compressImage,
+  validateImageFile,
+  validateImageUrl,
+} from "./image-utils";
