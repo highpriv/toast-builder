@@ -1,0 +1,117 @@
+@import "./variables";
+@import "./reset";
+@import "./animations";
+
+#app {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.toast-container {
+  position: fixed;
+  z-index: var(--z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  pointer-events: none;
+
+  &.top-left {
+    top: var(--spacing-lg);
+    left: var(--spacing-lg);
+  }
+
+  &.top-right {
+    top: var(--spacing-lg);
+    right: var(--spacing-lg);
+  }
+
+  &.bottom-left {
+    bottom: var(--spacing-lg);
+    left: var(--spacing-lg);
+  }
+
+  &.bottom-right {
+    bottom: var(--spacing-lg);
+    right: var(--spacing-lg);
+  }
+
+  > * {
+    pointer-events: auto;
+  }
+}
+
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+
+  &:hover {
+    background-color: var(--bg-tertiary);
+    transform: rotate(180deg);
+  }
+}
+
+.color-picker {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--bg-primary);
+}
+
+.color-swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--border-radius-sm);
+  border: 2px solid var(--border-color);
+  cursor: pointer;
+}
+
+.slider {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(
+    to right,
+    var(--bg-tertiary),
+    var(--color-primary)
+  );
+  appearance: none;
+  outline: none;
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+
+  &::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    cursor: pointer;
+    border: none;
+    transition: transform var(--transition-fast);
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}

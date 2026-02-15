@@ -5,9 +5,5 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": [
-    "tests/**/*.ts",
-    "tests/**/*.tsx",
-    "tests/**/*.js"
-  ]
+  "include": ["tests/**/*.ts", "tests/**/*.tsx", "tests/**/*.js"]
 }
