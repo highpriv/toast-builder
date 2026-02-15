@@ -1,0 +1,54 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+
+  // Vue specific
+  "[vue]": {
+    "editor.defaultFormatter": "Vue.volar"
+  },
+
+  // TypeScript specific
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // SCSS specific
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // TypeScript settings
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+
+  // Vue Volar settings
+  "volar.autoCompleteRefs": true,
+  "volar.completion.autoImportComponent": true,
+
+  // CSS settings
+  "css.lint.unknownAtRules": "ignore",
+
+  // File associations
+  "files.associations": {
+    "*.css": "scss"
+  },
+
+  // Exclude from file watcher
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/dist/**": true,
+    "**/.git/**": true,
+    "**/coverage/**": true
+  },
+
+  // Testing
+  "jest.autoRun": "off",
+  "jest.showCoverageOnLoad": false
+}
