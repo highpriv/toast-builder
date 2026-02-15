@@ -8,6 +8,23 @@ export type Position =
 
 export type AnimationType = 'fade' | 'slide' | 'bounce'
 
+export type IconName = 
+  | 'check-circle'
+  | 'check'
+  | 'badge-check'
+  | 'x-circle'
+  | 'alert-circle'
+  | 'exclamation-circle'
+  | 'alert-triangle'
+  | 'exclamation-triangle'
+  | 'information-circle'
+  | 'question-mark-circle'
+  | 'bell'
+  | 'megaphone'
+  | 'sparkles'
+  | 'heart'
+  | 'none'
+
 export interface NotificationConfig {
   id: string
   type: NotificationType
@@ -19,6 +36,7 @@ export interface NotificationConfig {
   textColor: string
   showIcon: boolean
   showCloseButton: boolean
+  customIcon?: IconName
   animation?: AnimationType
   showProgress?: boolean
 }
