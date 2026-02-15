@@ -1,0 +1,58 @@
+import type { NotificationType, NotificationConfig } from '@/types/toast'
+
+type ToastDefaults = Omit<NotificationConfig, 'id'>
+
+export const TOAST_DEFAULTS: Record<NotificationType, ToastDefaults> = {
+  success: {
+    type: 'success',
+    title: 'Success',
+    message: 'Operation completed successfully',
+    duration: 3000,
+    position: 'top-right',
+    backgroundColor: '#10b981',
+    textColor: '#ffffff',
+    showIcon: true,
+    showCloseButton: true,
+    animation: 'fade',
+    showProgress: true,
+  },
+  error: {
+    type: 'error',
+    title: 'Error',
+    message: 'Something went wrong',
+    duration: 5000,
+    position: 'top-right',
+    backgroundColor: '#ef4444',
+    textColor: '#ffffff',
+    showIcon: true,
+    showCloseButton: true,
+    animation: 'fade',
+    showProgress: true,
+  },
+  warning: {
+    type: 'warning',
+    title: 'Warning',
+    message: 'Please be careful',
+    duration: 4000,
+    position: 'top-right',
+    backgroundColor: '#f59e0b',
+    textColor: '#ffffff',
+    showIcon: true,
+    showCloseButton: true,
+    animation: 'fade',
+    showProgress: true,
+  },
+  info: {
+    type: 'info',
+    title: 'Info',
+    message: 'Here is some information',
+    duration: 3000,
+    position: 'top-right',
+    backgroundColor: '#3b82f6',
+    textColor: '#ffffff',
+    showIcon: true,
+    showCloseButton: true,
+    animation: 'fade',
+    showProgress: true,
+  },
+} as const
