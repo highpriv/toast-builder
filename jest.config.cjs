@@ -1,5 +1,4 @@
 module.exports = {
-  preset: "@vue/vue3-jest",
   testEnvironment: "jsdom",
 
   transform: {
@@ -40,7 +39,7 @@ module.exports = {
     "!src/assets/**/*",
   ],
 
-  coverageThresholds: {
+  coverageThreshold: {
     global: {
       branches: 70,
       functions: 70,
