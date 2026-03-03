@@ -1,348 +1,423 @@
-# Toast Notification Builder
+# 🎉 Toast Builder Vue3
 
-A type-safe toast notification configuration tool built with Vue 3 and TypeScript. Configure, preview, and export production-ready notification code with live updates and comprehensive customization options.
+<div align="center">
 
-Live Demo: https://toast-builder.vercel.app/
+[![npm version](https://img.shields.io/npm/v/toast-builder-vue3.svg?style=flat-square&color=4FC08D)](https://www.npmjs.com/package/toast-builder-vue3)
+[![npm downloads](https://img.shields.io/npm/dm/toast-builder-vue3.svg?style=flat-square&color=4FC08D)](https://www.npmjs.com/package/toast-builder-vue3)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/toast-builder-vue3?style=flat-square&color=4FC08D)](https://bundlephobia.com/package/toast-builder-vue3)
+[![license](https://img.shields.io/npm/l/toast-builder-vue3.svg?style=flat-square&color=4FC08D)](https://github.com/highpriv/toast-builder/blob/master/LICENSE)
 
-![Vue 3](https://img.shields.io/badge/Vue-3.5.25-4FC08D?logo=vue.js&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-7.3-646CFF?logo=vite&logoColor=white)
-![Jest](https://img.shields.io/badge/Jest-29.7-C21325?logo=jest&logoColor=white)
+**Modern, lightweight toast notification system for Vue 3 with TypeScript**
 
----
+[Live Demo](https://toast-builder.vercel.app/) • [NPM Package](https://www.npmjs.com/package/toast-builder-vue3) • [GitHub](https://github.com/highpriv/toast-builder)
 
-## Features
-
-### Core Features
-
-- **Configuration Panel**: Fully customizable notification properties
-  - 4 notification types (success, error, warning, info)
-  - Title and message inputs with validation
-  - Duration slider (1-10 seconds) or persistent mode
-  - 6 position options (top/bottom × left/center/right)
-
-- **Style Customization**
-  - Background and text color pickers with hex input
-  - Icon visibility toggle
-  - Close button toggle
-  - Progress bar toggle
-
-- **Live Preview**: Real-time preview that updates instantly as you configure
-
-- **Preset Management**
-  - Save current configuration as named presets
-  - Load previously saved presets
-  - Delete unwanted presets
-  - Persistent storage using localStorage
-
-- **Multiple Notification Stacking**: Display multiple notifications simultaneously with proper vertical arrangement
-
-### Bonus Features (All Implemented)
-
-- **Animation System**: 3 animation styles (fade, slide, bounce)
-- **Code Export**: Generate production-ready Vue 3 or JavaScript code with copy-to-clipboard
-- **Progress Bar**: Visual countdown for auto-dismiss notifications
-- **Custom Icon Upload**: Upload custom icons with automatic compression (max 128×128, 100KB)
-- **Custom Icon URLs**: Use external icon URLs with validation
-- **Dark/Light Theme**: Toggle between themes with system preference detection
-- **Built-in Icon Library**: 15 pre-configured icons for immediate use
+</div>
 
 ---
 
-## Tech Stack
+## ✨ Features
 
-| Technology         | Version | Purpose                              |
-| ------------------ | ------- | ------------------------------------ |
-| **Vue 3**          | 3.5.25  | Frontend framework (Composition API) |
-| **TypeScript**     | 5.9     | Type safety and better DX            |
-| **Vite**           | 7.3     | Build tool and dev server            |
-| **Jest**           | 29.7    | Testing framework                    |
-| **Vue Test Utils** | 2.4.6   | Vue component testing                |
-| **Nanoid**         | 5.0.7   | Unique ID generation                 |
-| **SCSS Modules**   | -       | Scoped styling                       |
-
----
-
-## Prerequisites
-
-- **Node.js**: ≥ 18.0.0
-- **npm**: ≥ 9.0.0
+- 🎨 **Fully Customizable** - Configure colors, icons, animations, and positions
+- 🎭 **3 Animation Styles** - Fade, slide, and bounce animations
+- 📍 **6 Position Options** - Place toasts anywhere on the screen
+- 🖼️ **Custom Icons** - Use URLs, Base64, or built-in icons
+- ⏱️ **Auto-dismiss** - Optional countdown with progress bar
+- 📱 **Responsive** - Works on all screen sizes
+- 🔒 **Type-Safe** - Full TypeScript support
+- 🪶 **Lightweight** - Minimal bundle size
+- ⚡ **Vite-powered** - Built with modern tooling
 
 ---
 
-## Setup Instructions
-
-### 1. Clone the repository
+## 📦 Installation
 
 ```bash
-git clone https://github.com/highpriv/toast-builder.git
-cd toast-builder
+npm install toast-builder-vue3
 ```
 
-### 2. Install dependencies
+Or with yarn:
 
 ```bash
-npm install
+yarn add toast-builder-vue3
 ```
 
-### 3. Start the development server
+Or with pnpm:
 
 ```bash
-npm run dev
-```
-
-The application will open automatically at `http://localhost:5173`
-
-### 4. Run tests
-
-```bash
-npm run test
+pnpm add toast-builder-vue3
 ```
 
 ---
 
-## Available Scripts
+## 🚀 Quick Start
 
-| Command                 | Description                              |
-| ----------------------- | ---------------------------------------- |
-| `npm run dev`           | Start development server with hot reload |
-| `npm run build`         | Build for production (`dist/` folder)    |
-| `npm run preview`       | Preview production build locally         |
-| `npm run test`          | Run all tests                            |
-| `npm run test:watch`    | Run tests in watch mode                  |
-| `npm run test:coverage` | Generate test coverage report            |
-| `npm run type-check`    | Run TypeScript type checking             |
+### 1. Import CSS
 
----
-
-## Project Structure
-
-```
-toast-builder/
-├── src/
-│   ├── components/
-│   │   ├── builder/          # Configuration panel components
-│   │   │   ├── ToastBuilder.vue
-│   │   │   ├── ConfigPanel.vue
-│   │   │   ├── PreviewPane.vue
-│   │   │   ├── TypeSelector.vue
-│   │   │   ├── PositionSelector.vue
-│   │   │   ├── ContentControls.vue
-│   │   │   ├── StyleControls.vue
-│   │   │   ├── AnimationSelector.vue
-│   │   │   ├── PresetManager.vue
-│   │   │   └── CodeExport.vue
-│   │   ├── common/            # Reusable UI components
-│   │   │   ├── BaseButton.vue
-│   │   │   ├── BaseInput.vue
-│   │   │   ├── BaseSelect.vue
-│   │   │   ├── BaseRadio.vue
-│   │   │   ├── ColorPicker.vue
-│   │   │   ├── Icon.vue
-│   │   │   └── ThemeToggle.vue
-│   │   └── toast/             # Toast display components
-│   │       ├── Toast.vue
-│   │       └── ToastContainer.vue
-│   ├── composables/           # Vue composition functions
-│   │   ├── useToast.ts        # Toast state management
-│   │   ├── useToastBuilder.ts # Builder config management
-│   │   ├── usePresets.ts      # Preset CRUD operations
-│   │   ├── useTheme.ts        # Theme management
-│   │   ├── useAnimation.ts    # Animation utilities
-│   │   └── useClipboard.ts    # Copy-to-clipboard functionality
-│   ├── utils/                 # Helper functions
-│   │   ├── validators.ts      # Input validation
-│   │   ├── storage.ts         # localStorage abstraction
-│   │   ├── code-generator.ts  # Code export logic
-│   │   ├── color-utils.ts     # Color manipulation
-│   │   ├── image-utils.ts     # Image compression & validation
-│   │   └── nanoid.ts          # ID generation
-│   ├── types/                 # TypeScript type definitions
-│   │   ├── toast.ts
-│   │   ├── builder.ts
-│   │   ├── animation.ts
-│   │   └── theme.ts
-│   ├── constants/             # App constants
-│   │   ├── toast-defaults.ts
-│   │   ├── animation-presets.ts
-│   │   ├── color-palettes.ts
-│   │   └── icon-library.ts
-│   ├── styles/                # Global styles
-│   │   ├── main.scss
-│   │   ├── _variables.scss
-│   │   ├── _reset.scss
-│   │   └── _animations.scss
-│   ├── App.vue
-│   └── main.ts
-├── tests/
-│   ├── unit/
-│   │   └── utils/
-│   │       └── validators.spec.ts
-│   ├── setup.ts
-│   └── __mocks__/
-├── package.json
-├── vite.config.ts
-├── tsconfig.json
-└── jest.config.cjs
-```
-
----
-
-## Development Approach
-
-### Architecture
-
-The project follows a **component-based architecture** with clear separation of concerns:
-
-1. **Presentation Layer** (`components/`): Reusable UI components using Vue 3 Composition API
-2. **Business Logic** (`composables/`): Shared state management and functionality using Vue composables
-3. **Utilities** (`utils/`): Pure functions for validation, storage, code generation
-4. **Type Safety**: Strict TypeScript configuration with comprehensive type definitions
-
-### Key Design Decisions
-
-**1. Composition API over Options API**
-
-- Better TypeScript inference
-- Improved code reusability through composables
-- More maintainable for complex logic
-
-**2. SCSS Modules for Styling**
-
-- Scoped styles prevent conflicts
-- CSS variable system for theming
-- Consistent design tokens
-
-**3. Single Source of Truth**
-
-- `useToastBuilder()` manages configuration state
-- `useToast()` manages active notifications
-- All components react to state changes
-
-**4. Validation & Error Handling**
-
-- Input validation on every change
-- User-friendly error messages
-- Prevents invalid configurations
-
-**5. Image Optimization**
-
-- Canvas API for client-side compression
-- Maximum dimensions (128×128px)
-- File size limit (100KB)
-- Supported formats: PNG, JPEG, GIF, WebP, SVG
-
-**6. Code Export**
-
-- Templates for Vue 3 SFC and plain JavaScript
-- Proper escaping for special characters
-- Copy-to-clipboard with user feedback
-
-### State Management Pattern
+In your `main.ts`:
 
 ```typescript
-// Global reactive state using composables
-const config = useToastBuilder(); // Configuration state
-const toasts = useToast(); // Active toasts
-const presets = usePresets(); // Saved presets
-const theme = useTheme(); // Theme preference
+import { createApp } from "vue";
+import App from "./App.vue";
+import "toast-builder-vue3/dist/toast-builder-vue3.css";
+
+createApp(App).mount("#app");
 ```
 
-### Testing Strategy
+### 2. Add ToastContainer
 
-- **Unit Tests**: Core utilities (validators, color manipulation)
-- **Component Tests**: (Ready for expansion)
-- **Integration Tests**: (Future improvement)
+In your `App.vue`:
 
----
+```vue
+<template>
+  <div id="app">
+    <router-view />
+    <ToastContainer />
+  </div>
+</template>
 
-## Assumptions
-
-### User Experience
-
-1. **Responsive design**: Optimized for all devices
-2. **Modern browser support**: Assumes ES2020+ features (async/await, optional chaining, etc.)
-3. **JavaScript enabled**: Application requires JavaScript to function
-4. **localStorage available**: Presets require localStorage (graceful degradation if unavailable)
-
-### Technical
-
-1. **No backend required**: All state managed client-side
-2. **ID generation**: Using `nanoid` for unique IDs instead of UUID (smaller, URL-safe)
-3. **Animation timing**: Standard durations (fade: 300ms, slide: 400ms, bounce: 500ms)
-4. **Color format**: Only hex colors supported (no RGB/HSL input)
-5. **Image upload**: Client-side compression using Canvas API (no server-side processing)
-6. **Theme detection**: Uses `prefers-color-scheme` media query for initial theme
-
-### Validation Rules
-
-- **Title**: Optional, max 50 characters
-- **Message**: Required, 1-200 characters
-- **Duration**: 1000ms - 10000ms or 0 (persistent)
-- **Preset name**: 1-50 characters
-- **Image files**: ≤5MB, PNG/JPEG/GIF/WebP/SVG only
-- **Image URLs**: Must end with valid image extension
-
-### Browser Compatibility
-
-- **Chrome**: ≥90
-- **Firefox**: ≥88
-- **Safari**: ≥14
-- **Edge**: ≥90
-
----
-
-## Testing
-
-The project includes comprehensive unit tests for core functionality:
-
-```bash
-# Run all tests
-npm run test
-
-# Run with coverage
-npm run test:coverage
-
-# Watch mode for development
-npm run test:watch
+<script setup lang="ts">
+import { ToastContainer } from "toast-builder-vue3";
+</script>
 ```
 
-**Current Test Coverage:**
+### 3. Show Toasts
 
-- Input validation (title, message, duration, preset names)
-- Color utilities
-- Image validation (file type, size, URL format)
-- Component tests (planned)
-- Integration tests (planned)
+In any component:
 
----
+```vue
+<script setup lang="ts">
+import { useToast } from "toast-builder-vue3";
 
-## Usage Example
+const { showToast } = useToast();
 
-1. **Select notification type** (success, error, warning, info)
-2. **Configure content** (title, message, duration)
-3. **Choose position** (where toast appears on screen)
-4. **Customize appearance** (colors, icons, progress bar)
-5. **Select animation** (fade, slide, bounce)
-6. **Preview in real-time** - See changes instantly
-7. **Test behavior** - Click "Show Notification" to trigger actual toast
-8. **Save as preset** (optional) - Save for reuse
-9. **Export code** - Get Vue 3 or JavaScript code
+const notify = () => {
+  // Minimal usage - smart defaults applied automatically
+  showToast({
+    type: "success",
+    message: "Operation completed successfully!",
+  });
+};
 
----
-
-## Build & Deployment
-
-### Production Build
-
-```bash
-npm run build
+const notifyWithCustomization = () => {
+  // Full customization - override any default
+  showToast({
+    type: "success",
+    message: "Operation completed successfully!",
+    title: "Success",
+    duration: 5000,
+    position: "bottom-right",
+    backgroundColor: "#10b981",
+    textColor: "#ffffff",
+    showIcon: true,
+    showCloseButton: true,
+    showProgress: true,
+    animation: "slide",
+  });
+};
+</script>
 ```
 
-Generates optimized production build in `dist/` folder.
+> **Smart Defaults:** Only `type` and `message` are required. All other options have sensible defaults based on the toast type.
 
-**Build configuration:**
+---
 
-- Output directory: `dist`
-- Build command: `npm run build`
-- Install command: `npm install`
+## 🎨 Smart Defaults System
+
+The package uses an intelligent defaults system that requires minimal configuration while allowing full customization.
+
+### Type-Based Defaults
+
+Each toast type automatically gets appropriate colors and icons:
+
+| Type      | Colors                     | Icon         |
+| --------- | -------------------------- | ------------ |
+| `success` | Green (#10b981 / #ffffff)  | Check circle |
+| `error`   | Red (#ef4444 / #ffffff)    | X circle     |
+| `warning` | Orange (#f59e0b / #111827) | Alert        |
+| `info`    | Blue (#3b82f6 / #ffffff)   | Info circle  |
+
+### Base Defaults
+
+All toasts use these defaults unless overridden:
+
+```typescript
+{
+  duration: 3000,          // 3 seconds
+  position: 'top-right',
+  showIcon: true,
+  showCloseButton: true,
+  animation: 'fade',
+  showProgress: false,
+}
+```
+
+### Customization Priority
+
+Defaults are applied in this order (highest priority first):
+
+1. **Per-toast config** (showToast options)
+2. **Global defaults** (ToastContainer props)
+3. **Type defaults** (type-based colors/icons)
+4. **Base defaults** (package defaults)
+
+### Global Defaults (Optional)
+
+Set default options for all toasts in your app:
+
+```vue
+<template>
+  <ToastContainer
+    position="top-right"
+    :defaultDuration="5000"
+    defaultAnimation="slide"
+    :defaultShowProgress="true"
+  />
+</template>
+
+<script setup lang="ts">
+import { ToastContainer } from "toast-builder-vue3";
+</script>
+```
+
+**ToastContainer Props:**
+
+| Prop                     | Type            | Default       | Description                   |
+| ------------------------ | --------------- | ------------- | ----------------------------- |
+| `position`               | `Position`      | `'top-right'` | Container position            |
+| `defaultDuration`        | `number`        | `3000`        | Default toast duration (ms)   |
+| `defaultAnimation`       | `AnimationType` | `'fade'`      | Default animation type        |
+| `defaultShowIcon`        | `boolean`       | `true`        | Show icons by default         |
+| `defaultShowCloseButton` | `boolean`       | `true`        | Show close buttons by default |
+| `defaultShowProgress`    | `boolean`       | `false`       | Show progress bars by default |
+
+---
+
+## 📖 API Reference
+
+### `useToast()`
+
+Returns an object with the following methods and properties:
+
+#### Methods
+
+##### `showToast(config: ToastInput): string`
+
+Display a new toast notification. Returns the toast ID.
+
+**Required Parameters:**
+
+| Parameter | Type                                          | Description   |
+| --------- | --------------------------------------------- | ------------- |
+| `type`    | `'success' \| 'error' \| 'warning' \| 'info'` | Toast type    |
+| `message` | `string`                                      | Toast message |
+
+**Optional Parameters:**
+
+| Parameter                 | Type                            | Default       | Description                     |
+| ------------------------- | ------------------------------- | ------------- | ------------------------------- |
+| `title`                   | `string`                        | `''`          | Toast title                     |
+| `duration`                | `number`                        | `3000`        | Duration in ms (0 = persistent) |
+| `position`                | `Position`                      | `'top-right'` | Position on screen              |
+| `backgroundColor`         | `string`                        | Type-based    | Background color (hex)          |
+| `textColor`               | `string`                        | Type-based    | Text color (hex)                |
+| `showIcon`                | `boolean`                       | `true`        | Show/hide icon                  |
+| `showCloseButton`         | `boolean`                       | `true`        | Show/hide close button          |
+| `showProgress`            | `boolean`                       | `false`       | Show progress bar               |
+| `animation`               | `'fade' \| 'slide' \| 'bounce'` | `'fade'`      | Animation type                  |
+| `customIcon`              | `IconName`                      | Type-based    | Built-in icon name              |
+| `customIconUrl`           | `string`                        | -             | Custom icon URL                 |
+| `customIconBase64`        | `string`                        | -             | Custom icon Base64              |
+| `customCloseButtonUrl`    | `string`                        | -             | Custom close button URL         |
+| `customCloseButtonBase64` | `string`                        | -             | Custom close button Base64      |
+
+##### `dismissToast(id: string): void`
+
+Dismiss a specific toast by ID.
+
+##### `clearAllToasts(): void`
+
+Dismiss all active toasts.
+
+##### `undoLastDismissed(): void`
+
+Restore the last dismissed toast.
+
+##### `getToastsByPosition(position: Position): ComputedRef<ActiveNotification[]>`
+
+Get all toasts at a specific position.
+
+#### Properties
+
+- `activeToasts`: `ComputedRef<ActiveNotification[]>` - All active toasts
+- `dismissedToasts`: `ComputedRef<ActiveNotification[]>` - Recently dismissed toasts
+
+---
+
+## 💡 Examples
+
+### Success Toast
+
+```typescript
+showToast({
+  type: "success",
+  message: "Changes saved successfully!",
+  duration: 3000,
+  position: "top-right",
+  backgroundColor: "#10b981",
+  textColor: "#ffffff",
+  showIcon: true,
+  showCloseButton: true,
+});
+```
+
+### Error Toast with Progress Bar
+
+```typescript
+showToast({
+  type: "error",
+  title: "Error",
+  message: "Failed to save changes",
+  duration: 5000,
+  position: "top-right",
+  backgroundColor: "#ef4444",
+  textColor: "#ffffff",
+  showIcon: true,
+  showCloseButton: true,
+  showProgress: true,
+  animation: "bounce",
+});
+```
+
+### Persistent Toast
+
+```typescript
+showToast({
+  type: "warning",
+  message: "This toast stays until closed",
+  duration: 0, // Persistent
+  position: "top-center",
+  backgroundColor: "#f59e0b",
+  textColor: "#000000",
+  showIcon: true,
+  showCloseButton: true,
+});
+```
+
+### Custom Icon
+
+```typescript
+showToast({
+  type: "info",
+  message: "You have a new message",
+  duration: 4000,
+  position: "bottom-right",
+  backgroundColor: "#3b82f6",
+  textColor: "#ffffff",
+  showIcon: true,
+  showCloseButton: true,
+  customIcon: "bell", // Built-in icon
+});
+```
+
+### Using Built-in Icons
+
+Available icons: `check-circle`, `check`, `badge-check`, `x-circle`, `alert-circle`, `exclamation-circle`, `alert-triangle`, `exclamation-triangle`, `information-circle`, `question-mark-circle`, `bell`, `megaphone`, `sparkles`, `heart`, `moon`, `sun`
+
+---
+
+## 🎨 Position Options
+
+- `top-left`
+- `top-center`
+- `top-right`
+- `bottom-left`
+- `bottom-center`
+- `bottom-right`
+
+---
+
+## 🎬 Animation Types
+
+- `fade` - Simple fade in/out (300ms)
+- `slide` - Slide from right (400ms)
+- `bounce` - Bouncy entrance (500ms)
+
+---
+
+## 🎨 Recommended Colors
+
+| Type    | Background | Text      |
+| ------- | ---------- | --------- |
+| Success | `#10b981`  | `#ffffff` |
+| Error   | `#ef4444`  | `#ffffff` |
+| Warning | `#f59e0b`  | `#000000` |
+| Info    | `#3b82f6`  | `#ffffff` |
+
+---
+
+## 📘 TypeScript Support
+
+Full TypeScript support with comprehensive type definitions:
+
+```typescript
+import type {
+  NotificationConfig,
+  ActiveNotification,
+  NotificationType,
+  Position,
+  AnimationType,
+  IconName,
+} from "toast-builder-vue3";
+```
+
+---
+
+## 🛠️ Browser Support
+
+- Chrome ≥ 90
+- Firefox ≥ 88
+- Safari ≥ 14
+- Edge ≥ 90
+
+---
+
+## 📄 License
+
+[GPL-3.0](LICENSE)
+
+---
+
+## 🔗 Links
+
+- [NPM Package](https://www.npmjs.com/package/toast-builder-vue3)
+- [Live Demo](https://toast-builder.vercel.app/)
+- [GitHub Repository](https://github.com/highpriv/toast-builder)
+- [Report Issues](https://github.com/highpriv/toast-builder/issues)
+
+---
+
+## 👨‍💻 Author
+
+**Canberk Beren**
+
+- GitHub: [@highpriv](https://github.com/highpriv)
+
+---
+
+## ☕ Support This Project
+
+If you find this package useful, consider buying me a coffee! Your support helps me maintain and improve this project.
+
+<div align="center">
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-yellow.svg?style=for-the-badge&logo=buy-me-a-coffee)](https://buymeacoffee.com/highpriv)
+
+### Or scan the QR code:
+
+<img src="buymeacoffee-qr.png" alt="Buy Me a Coffee QR Code" width="200" />
+
+</div>
+
+---
+
+Made with ❤️ using Vue 3 and TypeScript

@@ -3,6 +3,34 @@ export const DEFAULT_ICONS = {
   error: "x-circle",
   warning: "alert-triangle",
   info: "information-circle",
+} as const;
+
+export const DEFAULT_COLORS = {
+  success: {
+    backgroundColor: "#10b981",
+    textColor: "#ffffff",
+  },
+  error: {
+    backgroundColor: "#ef4444",
+    textColor: "#ffffff",
+  },
+  warning: {
+    backgroundColor: "#f59e0b",
+    textColor: "#ffffff",
+  },
+  info: {
+    backgroundColor: "#3b82f6",
+    textColor: "#ffffff",
+  },
+} as const;
+
+export const DEFAULT_CONFIG = {
+  duration: 3000,
+  position: "top-right" as const,
+  showIcon: true,
+  showCloseButton: true,
+  animation: "fade" as const,
+  showProgress: false,
 };
 
 export const TOAST_DEFAULTS = {

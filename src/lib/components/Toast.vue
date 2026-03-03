@@ -5,12 +5,13 @@
     animation: animationStyle
   }">
     <div :class="$style['content']">
-      <div :class="$style['content']">
+      <div :class="$style['main']">
         <img v-if="toast.showIcon && toast.customIconBase64" :src="toast.customIconBase64" :class="$style['customIcon']"
           alt="Custom icon" />
         <img v-else-if="toast.showIcon && showCustomIconUrl" :src="toast.customIconUrl" :class="$style['customIcon']"
           alt="Custom icon" @error="handleIconLoadError" />
-        <span v-else-if="toast.showIcon && defaultIconSvg" v-html="defaultIconSvg" :class="$style['customIcon']" />
+        <Icon v-else-if="toast.showIcon && iconName" :name="iconName as IconName" :class="$style['icon']" size="24px" />
+
         <div :class="$style['text']">
           <div v-if="toast.title" :class="$style['title']">{{ toast.title }}</div>
           <div :class="$style['message']">{{ toast.message }}</div>
@@ -22,23 +23,23 @@
           :class="$style['closeButtonImage']" alt="Close" />
         <img v-else-if="showCustomCloseButtonUrl" :src="toast.customCloseButtonUrl" :class="$style['closeButtonImage']"
           alt="Close" @error="handleCloseButtonLoadError" />
-        <span v-else class="$style['closeButtonImage']" v-html="closeSvg" />
+        <Icon v-else name="x-circle" size="20px" />
       </button>
     </div>
 
-    <div v-if="toast.showProgress && toast.duration > 0" :class="$style['progressBar']"
-      :style="{ animation: `progress-bar ${toast.duration}ms linear forwards` }"></div>
+    <div v-if="toast.showProgress && (toast.duration || 0) > 0" :class="$style['progressBar']"
+      :style="{ animation: `progress-bar ${toast.duration || 0}ms linear forwards` }"></div>
   </div>
 </template>
 
 <script setup lang="ts">
-const closeSvg = `<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 20 20' fill='none' stroke='currentColor' stroke-width='2'><line x1='6' y1='6' x2='14' y2='14'/><line x1='6' y1='14' x2='14' y2='6'/></svg>`;
 import { computed, ref } from 'vue';
-import type { ActiveNotification } from '../types/toast';
-import { ICON_LIBRARY } from '../constants/icon-library';
-import { useAnimation } from '../../composables/useAnimation';
+import type { ActiveNotification, IconName } from '../types/toast';
+import Icon from './Icon.vue';
+import { useAnimation } from '../composables/useAnimation';
 import { DEFAULT_ICONS } from '../constants/toast-defaults';
 import { validateImageUrl } from '../utils/validateImageUrl';
+
 const props = defineProps<{
   toast: ActiveNotification;
 }>();
@@ -52,11 +53,11 @@ const { getAnimationClasses, getAnimationDuration } = useAnimation();
 const iconLoadError = ref(false);
 const closeButtonLoadError = ref(false);
 
-
-const defaultIconSvg = computed(() => {
-  if (!props.toast.showIcon || props.toast.customIconBase64 || showCustomIconUrl.value) return '';
-  const iconKey = props.toast.customIcon || DEFAULT_ICONS[props.toast.type];
-  return ICON_LIBRARY[iconKey] || '';
+const iconName = computed(() => {
+  if (props.toast.customIcon) {
+    return props.toast.customIcon;
+  }
+  return DEFAULT_ICONS[props.toast.type];
 });
 
 const showCustomIconUrl = computed(() => {
@@ -93,4 +94,4 @@ const handleClose = () => {
 
 <style module lang="scss">
 @import '../styles/toast.module.scss';
-// No additional styles needed for toast notification logic</style>
+</style>

@@ -20,11 +20,11 @@ The most customizable, lightweight and type-safe toast notification system for V
 ## Installation
 
 ```bash
-npm install @your-scope/vue-toast
-# veya
-pnpm add @your-scope/vue-toast
-# veya
-yarn add @your-scope/vue-toast
+npm install toast-builder-vue3
+# or
+pnpm add toast-builder-vue3
+# or
+yarn add toast-builder-vue3
 ```
 
 ---
@@ -32,25 +32,34 @@ yarn add @your-scope/vue-toast
 ## Quick Start
 
 ```js
-// main.js veya main.ts
-import { ToastContainer } from '@your-scope/vue-toast';
+// main.js or main.ts
+import { ToastContainer } from 'toast-builder-vue3';
+import 'toast-builder-vue3/dist/toast-builder-vue3.css';
 
 // App.vue
 <template>
-	<ToastContainer position="top-right" />
+	<ToastContainer />
 	<!-- ... -->
 </template>
 
-// Herhangi bir componentte
-import { useToast } from '@your-scope/vue-toast';
+// In any component - Minimal usage
+import { useToast } from 'toast-builder-vue3';
 
 const { showToast } = useToast();
+
+// Only type and message required - smart defaults applied
 showToast({
 	type: 'success',
-	title: 'Başarılı!',
-	message: 'İşlem tamamlandı.',
-	duration: 3000,
-	position: 'top-right',
+	message: 'Operation completed successfully!'
+});
+
+// Or full customization - override any default
+showToast({
+	type: 'success',
+	title: 'Success!',
+	message: 'Operation completed.',
+	duration: 5000,
+	position: 'bottom-right',
 	backgroundColor: '#22c55e',
 	textColor: '#fff',
 	showIcon: true,
@@ -62,33 +71,88 @@ showToast({
 
 ---
 
+## Smart Defaults System
+
+The package uses intelligent defaults requiring minimal configuration:
+
+### Type-Based Defaults
+
+- **success**: Green (#10b981) + check icon
+- **error**: Red (#ef4444) + x-circle icon
+- **warning**: Orange (#f59e0b) + alert icon
+- **info**: Blue (#3b82f6) + info icon
+
+### Base Defaults
+
+```typescript
+{
+  duration: 3000,          // 3 seconds
+  position: 'top-right',
+  showIcon: true,
+  showCloseButton: true,
+  animation: 'fade',
+  showProgress: false
+}
+```
+
+### Global Defaults (Optional)
+
+```vue
+<ToastContainer
+  position="top-right"
+  :defaultDuration="5000"
+  defaultAnimation="slide"
+  :defaultShowProgress="true"
+/>
+```
+
+**Priority**: Per-toast config > Global defaults > Type defaults > Base defaults
+
+---
+
 ## API Reference
 
 ### `<ToastContainer />` Props
 
-- `position`: "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right"
+| Prop                     | Type            | Default       | Description                   |
+| ------------------------ | --------------- | ------------- | ----------------------------- |
+| `position`               | `Position`      | `'top-right'` | Container position            |
+| `defaultDuration`        | `number`        | `3000`        | Default duration (ms)         |
+| `defaultAnimation`       | `AnimationType` | `'fade'`      | Default animation             |
+| `defaultShowIcon`        | `boolean`       | `true`        | Show icons by default         |
+| `defaultShowCloseButton` | `boolean`       | `true`        | Show close buttons by default |
+| `defaultShowProgress`    | `boolean`       | `false`       | Show progress bars by default |
 
 ### `useToast()` Composable
 
-- `showToast(config)`: Bildirim gösterir
-- `dismissToast(id)`: Bildirimi kapatır
-- `clearAllToasts()`: Tüm bildirimleri kapatır
+- `showToast(config: ToastInput)`: Display a notification (returns toast ID)
+- `dismissToast(id: string)`: Close a notification
+- `clearAllToasts()`: Close all notifications
+- `undoLastDismissed()`: Restore last dismissed notification
+- `getToastsByPosition(position)`: Get toasts at specific position
+
+**ToastInput Config (Required)**:
+
+- `type`: `'success' | 'error' | 'warning' | 'info'`
+- `message`: `string`
+
+**Optional Parameters**: `title`, `duration`, `position`, `backgroundColor`, `textColor`, `showIcon`, `showCloseButton`, `showProgress`, `animation`, `customIcon`, `customIconUrl`, `customIconBase64`
 
 ### TypeScript Types
 
-- `NotificationConfig`, `ActiveNotification`, `Position`, `AnimationType`, `IconName`
+All types exported: `ToastInput`, `NotificationConfig`, `ActiveNotification`, `Position`, `AnimationType`, `IconName`
 
 ---
 
 ## Customization & Theming
 
-SCSS değişkenlerini override ederek kendi temanı oluşturabilirsin:
+Override SCSS variables to create your own theme:
 
 ```scss
 // main.scss
 $toast-bg: #222;
 $toast-radius: 8px;
-@import "@your-scope/vue-toast/styles/toast.module.scss";
+@import "toast-builder-vue3/styles/toast.module.scss";
 ```
 
 ---
@@ -96,13 +160,13 @@ $toast-radius: 8px;
 ## Why Choose This Package?
 
 - SEO optimized: Fast, lightweight, and crawlable
-- No external dependencies
+- No external dependencies (except Vue & nanoid)
 - Works with all Vue 3 setups
 - TypeScript out of the box
 - 15+ built-in icons
 - Custom icon upload & URL support
 - Progress bar, animations, stacking
-- Used in production by real teams
+- Production-ready and battle-tested
 
 ---
 
@@ -111,6 +175,15 @@ $toast-radius: 8px;
 - License: GPL-3.0
 - Author: Canberk Beren
 - GitHub: https://github.com/highpriv/toast-builder
+- NPM: https://www.npmjs.com/package/toast-builder-vue3
+
+---
+
+## ☕ Support This Project
+
+If you find this package useful, consider buying me a coffee!
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-yellow.svg?style=flat-square&logo=buy-me-a-coffee)](https://buymeacoffee.com/highpriv)
 
 ---
 
@@ -120,6 +193,6 @@ vue3, toast, notification, typescript, component, animation, scss, lightweight, 
 
 ---
 
-## Star & Share
+## Star & Support
 
-Beğendiyseniz GitHub’da yıldız verin ve paylaşın! Daha fazla Vue 3 bileşeni için takipte kalın.
+If you found this helpful, give it a ⭐ on GitHub and share it with others! Follow for more Vue 3 components.

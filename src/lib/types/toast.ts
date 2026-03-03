@@ -28,14 +28,14 @@ export type IconName =
 export interface NotificationConfig {
   id: string;
   type: NotificationType;
-  title: string;
   message: string;
-  duration: number;
-  position: Position;
-  backgroundColor: string;
-  textColor: string;
-  showIcon: boolean;
-  showCloseButton: boolean;
+  title?: string;
+  duration?: number;
+  position?: Position;
+  backgroundColor?: string;
+  textColor?: string;
+  showIcon?: boolean;
+  showCloseButton?: boolean;
   customIcon?: IconName;
   customIconUrl?: string;
   customIconBase64?: string;
@@ -44,6 +44,26 @@ export interface NotificationConfig {
   animation?: AnimationType;
   showProgress?: boolean;
 }
+
+export interface ToastInput {
+  type: NotificationType;
+  message: string;
+  title?: string;
+  duration?: number;
+  position?: Position;
+  backgroundColor?: string;
+  textColor?: string;
+  showIcon?: boolean;
+  showCloseButton?: boolean;
+  customIcon?: IconName;
+  customIconUrl?: string;
+  customIconBase64?: string;
+  customCloseButtonUrl?: string;
+  customCloseButtonBase64?: string;
+  animation?: AnimationType;
+  showProgress?: boolean;
+}
+
 export interface ActiveNotification extends NotificationConfig {
   createdAt: number;
 }
