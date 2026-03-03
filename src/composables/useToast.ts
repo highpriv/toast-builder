@@ -1,6 +1,6 @@
 import { ref, computed } from "vue";
 import type { NotificationConfig, ActiveNotification, Position } from "@/types";
-import { generateId } from "@/utils";
+import { generateId } from "../utils/nanoid";
 
 const activeToasts = ref<ActiveNotification[]>([]);
 const dismissedToasts = ref<ActiveNotification[]>([]);

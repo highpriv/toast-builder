@@ -5,13 +5,12 @@
     animation: animationStyle
   }">
     <div :class="$style['content']">
-      <div :class="$style['main']">
+      <div :class="$style['content']">
         <img v-if="toast.showIcon && toast.customIconBase64" :src="toast.customIconBase64" :class="$style['customIcon']"
           alt="Custom icon" />
         <img v-else-if="toast.showIcon && showCustomIconUrl" :src="toast.customIconUrl" :class="$style['customIcon']"
           alt="Custom icon" @error="handleIconLoadError" />
-        <Icon v-else-if="toast.showIcon && iconName" :name="iconName" :class="$style['icon']" size="24px" />
-
+        <span v-else-if="toast.showIcon && defaultIconSvg" v-html="defaultIconSvg" :class="$style['customIcon']" />
         <div :class="$style['text']">
           <div v-if="toast.title" :class="$style['title']">{{ toast.title }}</div>
           <div :class="$style['message']">{{ toast.message }}</div>
@@ -23,7 +22,7 @@
           :class="$style['closeButtonImage']" alt="Close" />
         <img v-else-if="showCustomCloseButtonUrl" :src="toast.customCloseButtonUrl" :class="$style['closeButtonImage']"
           alt="Close" @error="handleCloseButtonLoadError" />
-        <Icon v-else name="x-circle" size="20px" />
+        <span v-else class="$style['closeButtonImage']" v-html="closeSvg" />
       </button>
     </div>
 
@@ -33,9 +32,10 @@
 </template>
 
 <script setup lang="ts">
+const closeSvg = `<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 20 20' fill='none' stroke='currentColor' stroke-width='2'><line x1='6' y1='6' x2='14' y2='14'/><line x1='6' y1='14' x2='14' y2='6'/></svg>`;
 import { computed, ref } from 'vue';
 import type { ActiveNotification } from '../types/toast';
-import Icon from './Icon.vue';
+import { ICON_LIBRARY } from '../constants/icon-library';
 import { useAnimation } from '../../composables/useAnimation';
 import { DEFAULT_ICONS } from '../constants/toast-defaults';
 import { validateImageUrl } from '../utils/validateImageUrl';
@@ -52,11 +52,11 @@ const { getAnimationClasses, getAnimationDuration } = useAnimation();
 const iconLoadError = ref(false);
 const closeButtonLoadError = ref(false);
 
-const iconName = computed(() => {
-  if (props.toast.customIcon) {
-    return props.toast.customIcon;
-  }
-  return DEFAULT_ICONS[props.toast.type];
+
+const defaultIconSvg = computed(() => {
+  if (!props.toast.showIcon || props.toast.customIconBase64 || showCustomIconUrl.value) return '';
+  const iconKey = props.toast.customIcon || DEFAULT_ICONS[props.toast.type];
+  return ICON_LIBRARY[iconKey] || '';
 });
 
 const showCustomIconUrl = computed(() => {

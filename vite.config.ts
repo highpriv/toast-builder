@@ -1,6 +1,7 @@
+import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import { fileURLToPath, URL } from "node:url";
+import path from "path";
 
 export default defineConfig({
   plugins: [vue()],
@@ -33,13 +34,19 @@ export default defineConfig({
   },
   build: {
     target: "esnext",
-    minify: "esbuild",
-    sourcemap: false,
-    cssCodeSplit: true,
+    outDir: "dist",
+    sourcemap: true,
+    lib: {
+      entry: path.resolve(__dirname, "src/lib/index.ts"),
+      name: "ToastBuilderVue3",
+      fileName: (format) => `index.${format}.js`,
+      formats: ["es", "cjs"],
+    },
     rollupOptions: {
+      external: ["vue"],
       output: {
-        manualChunks: {
-          vendor: ["vue", "nanoid"],
+        globals: {
+          vue: "Vue",
         },
       },
     },

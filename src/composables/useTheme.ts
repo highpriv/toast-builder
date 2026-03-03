@@ -1,6 +1,6 @@
 import { ref, watch, onMounted } from "vue";
 import type { Theme } from "@/types";
-import { ThemeStorage } from "@/utils";
+import { ThemeStorage } from "../utils/storage";
 
 const currentTheme = ref<Theme>("light");
 

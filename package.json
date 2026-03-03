@@ -1,7 +1,7 @@
 {
   "name": "toast-builder-vue3",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.10",
   "type": "module",
   "description": "A modern, type-safe toast notification builder for Vue 3, built with TypeScript and Vite.",
   "author": "Canberk Beren",
@@ -21,6 +21,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
+    "build:lib": "vite build",
     "preview": "vite preview",
     "test": "jest --verbose",
     "test:watch": "jest --watch",
@@ -28,13 +29,17 @@
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "vue": "^3.5.25",
-    "nanoid": "^5.0.7"
+    "nanoid": "^5.0.7",
+    "toast-builder-vue3": "^1.0.9",
+    "vue": "^3.5.25"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",
     "@babel/preset-env": "^7.24.0",
     "@babel/preset-typescript": "^7.24.0",
+    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-typescript": "^12.3.0",
     "@types/jest": "^29.5.12",
     "@types/node": "^24.10.1",
     "@vitejs/plugin-vue": "^6.0.2",
@@ -44,8 +49,12 @@
     "babel-jest": "^29.7.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "rollup": "^4.59.0",
+    "rollup-plugin-vue": "^6.0.0",
     "sass": "^1.77.0",
     "ts-jest": "^29.2.0",
+    "tslib": "^2.8.1",
+    "tsup": "^8.5.1",
     "typescript": "~5.9.3",
     "vite": "^7.3.1",
     "vue-tsc": "^3.1.5"
@@ -53,5 +62,8 @@
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=9.0.0"
-  }
+  },
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts"
 }

@@ -1,6 +1,8 @@
 import { ref, computed } from "vue";
 import type { Preset, NotificationConfig } from "@/types";
-import { PresetStorage, generatePresetId, validatePresetName } from "@/utils";
+import { PresetStorage } from "../utils/storage";
+import { generatePresetId } from "../utils/nanoid";
+import { validatePresetName } from "../utils/validators";
 
 const presets = ref<Preset[]>(PresetStorage.loadPresets());
 

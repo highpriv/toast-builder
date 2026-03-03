@@ -1,6 +1,6 @@
 {
-  "name": "@your-scope/vue-toast",
-  "version": "0.1.0",
+  "name": "toast-builder-vue3",
+  "version": "1.0.2",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",

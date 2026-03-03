@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import type { NotificationConfig, NotificationType } from "@/types";
 import { TOAST_DEFAULTS } from "@/constants";
-import { generateVueCode, generateJSCode } from "@/utils";
+import { generateVueCode, generateJSCode } from "../utils/code-generator";
 
 const currentConfig = ref<Omit<NotificationConfig, "id">>({
   ...TOAST_DEFAULTS.success,
