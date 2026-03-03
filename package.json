@@ -1,7 +1,7 @@
 {
   "name": "toast-builder-vue3",
   "private": false,
-  "version": "1.0.10",
+  "version": "1.0.11",
   "type": "module",
   "description": "A modern, type-safe toast notification builder for Vue 3, built with TypeScript and Vite.",
   "author": "Canberk Beren",
