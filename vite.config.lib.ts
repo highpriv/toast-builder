@@ -1,8 +1,9 @@
 import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import path from "path";
 
-// App build configuration (for Vercel deployment)
+// Library build configuration
 export default defineConfig({
   plugins: [vue()],
   resolve: {
@@ -27,14 +28,23 @@ export default defineConfig({
       },
     },
   },
-  server: {
-    port: 5173,
-    strictPort: false,
-    open: true,
-  },
   build: {
     target: "esnext",
     outDir: "dist",
     sourcemap: true,
+    lib: {
+      entry: path.resolve(__dirname, "src/lib/index.ts"),
+      name: "ToastBuilderVue3",
+      fileName: (format) => `index.${format}.js`,
+      formats: ["es", "cjs"],
+    },
+    rollupOptions: {
+      external: ["vue"],
+      output: {
+        globals: {
+          vue: "Vue",
+        },
+      },
+    },
   },
 });

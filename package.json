@@ -47,7 +47,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "build:lib": "vite build",
+    "build:lib": "vite build --config vite.config.lib.ts",
     "preview": "vite preview",
     "test": "jest --verbose",
     "test:watch": "jest --watch",
