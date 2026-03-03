@@ -1,10 +1,10 @@
 {
-  "name": "toast-builder",
-  "private": true,
+  "name": "toast-builder-vue3",
+  "private": false,
   "version": "1.0.0",
   "type": "module",
-  "description": "A modern, type-safe toast notification builder with live preview and code export",
-  "author": "Canberk",
+  "description": "A modern, type-safe toast notification builder for Vue 3, built with TypeScript and Vite.",
+  "author": "Canberk Beren",
   "license": "GPL-3.0",
   "keywords": [
     "vue3",
@@ -14,6 +14,10 @@
     "builder",
     "vite"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/highpriv/toast-builder"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",

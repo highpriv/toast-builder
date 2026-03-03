@@ -1,0 +1,15 @@
+{
+  "name": "@your-scope/vue-toast",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "vue": ">=3.0.0"
+  },
+  "author": "Canberk Beren",
+  "license": "GPL-3.0"
+}
