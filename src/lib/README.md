@@ -1,4 +1,3 @@
-
 # Vue 3 Toast Notification Component
 
 The most customizable, lightweight and type-safe toast notification system for Vue 3. Instantly add beautiful, animated notifications to your app with zero dependencies.
@@ -6,6 +5,7 @@ The most customizable, lightweight and type-safe toast notification system for V
 ---
 
 ## Features
+
 - ⚡ Ultra-fast, zero-dependency
 - 🎨 Customizable colors, icons, animations
 - 🌓 Dark/light theme support
@@ -65,14 +65,17 @@ showToast({
 ## API Reference
 
 ### `<ToastContainer />` Props
+
 - `position`: "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right"
 
 ### `useToast()` Composable
+
 - `showToast(config)`: Bildirim gösterir
 - `dismissToast(id)`: Bildirimi kapatır
 - `clearAllToasts()`: Tüm bildirimleri kapatır
 
 ### TypeScript Types
+
 - `NotificationConfig`, `ActiveNotification`, `Position`, `AnimationType`, `IconName`
 
 ---
@@ -85,12 +88,13 @@ SCSS değişkenlerini override ederek kendi temanı oluşturabilirsin:
 // main.scss
 $toast-bg: #222;
 $toast-radius: 8px;
-@import '@your-scope/vue-toast/styles/toast.module.scss';
+@import "@your-scope/vue-toast/styles/toast.module.scss";
 ```
 
 ---
 
 ## Why Choose This Package?
+
 - SEO optimized: Fast, lightweight, and crawlable
 - No external dependencies
 - Works with all Vue 3 setups
@@ -111,9 +115,11 @@ $toast-radius: 8px;
 ---
 
 ## Keywords
+
 vue3, toast, notification, typescript, component, animation, scss, lightweight, fast, customizable, dark-mode, progress-bar, icon, builder
 
 ---
 
 ## Star & Share
+
 Beğendiyseniz GitHub’da yıldız verin ve paylaşın! Daha fazla Vue 3 bileşeni için takipte kalın.
